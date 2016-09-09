@@ -1,0 +1,22 @@
+<h1>{{title}}</h1>
+<div class="wrapper">
+  <div class = "field-size">
+    <div>
+    <input type="number" value="" min=3 max="17"  [(ngModel)]="size">
+    <div class="button" (click)="getRange()">Choose the field size</div>
+    </div>
+       </div>
+     <div class = "players">
+       <player1></player1>
+       <player2></player2>
+     </div>
+     <div class = "board">
+         <div *ngFor="let line of matrix" class="line">
+             <cross  *ngFor="let cell of line"  [cell]="cell" class="block"></cross>
+         </div>
+      </div>
+   </div>
+
+
+
+
