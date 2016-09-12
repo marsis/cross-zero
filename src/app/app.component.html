@@ -1,5 +1,7 @@
 <h1>{{title}}</h1>
 <div class="wrapper">
+  <span class="winner" *ngIf="winner0">First player win!!!</span>
+  <span class="winner" *ngIf="winnerX">Second player win!!!</span>
   <div class = "field-size">
     <div>
     <input type="number" value="" min=3 max="17"  [(ngModel)]="size">
@@ -15,6 +17,7 @@
              <cross  *ngFor="let cell of line"  [cell]="cell" class="block"></cross>
          </div>
       </div>
+
    </div>
 
 

@@ -6,6 +6,8 @@ export class GameLogicService {
   private sign: string;
   private counter: number = 0;
   public inputValue: any = 3;
+  public winner0:boolean;
+  public winnerX:boolean;
  // public x:string;
   public matrix: any = [];
 i: any;
@@ -29,7 +31,8 @@ i: any;
     //  console.log(this.counter);
  this.getWinnerLines(cell, inputValue);
  this.getWinnerColumns(cell, inputValue);
- this.getWinnerDiagonal(cell, inputValue);
+ this.getWinnerDiagonalX(cell, inputValue);
+ this.getWinnerDiagonalSide(cell, inputValue)
     } else if (cell.value === '' && this.counter % 2 !== 0) {
       //this.counter++;
       //this.cell.clicked = true;
@@ -40,7 +43,8 @@ i: any;
     //  console.log(this.counter);
  this.getWinnerLines(cell, inputValue);
  this.getWinnerColumns(cell, inputValue);
- this.getWinnerDiagonal(cell, inputValue);
+ this.getWinnerDiagonalX(cell, inputValue);
+ this.getWinnerDiagonalSide(cell, inputValue)
     }
    // console.log('arr',this.arr);
   }
@@ -56,10 +60,12 @@ i: any;
          counter0++;
        }
        if (counter0 === this.inputValue) {
-         setTimeout(()=>alert('First player won!'), 300);
+         //setTimeout(()=>alert('First player won!'), 300);
+         this.winner0 = true;
          this.counter = 0;
        } else if (counterX === this.inputValue) {
-         setTimeout(()=>alert('Second player won!'), 300);
+         //setTimeout(()=>alert('Second player won!'), 300);
+         this.winnerX = true;
          this.counter = 0;
        }
      }
@@ -86,30 +92,54 @@ i: any;
        }
      }
   }
-  getWinnerDiagonal(matrix, inputValue) {
-    for(let i= 0; i<3; i++){
-      let counterX = 0;
-      let counter0 = 0;
-      for(let j=0; j<3; j++){
-        if((i==j) && this.matrix[i][j].value==='x'){
+
+
+getWinnerDiagonalX(matrix, inputValue){
+  let counterX=0;
+  let counterO=0;
+  for (let i =0; i<this.inputValue; i++){
+    for(let j=0; j<this.inputValue;j++){
+      if(i===j){
+        if(this.matrix[i][j].value === 'x'){
           counterX++;
-          console.log('counterX', counterX);
-        }else if((i==j) && this.matrix[i][j].value==='o'){
-          counter0++;
-         // console.log('counter0', counter0);
         }
-        if(counter0 === 3){
-          setTimeout(()=>alert('First player won!'),300);
-          this.counter = 0;
-        }else if(counterX === 3){
-          setTimeout(()=>alert('Second player won!'),300);
-          this.counter = 0;
+        if(this.matrix[i][j].value === 'o'){
+          counterO++;
+          console.log(counterO);
         }
       }
     }
+    if(counterX === this.inputValue){
+      setTimeout(()=>alert('Second player won!'), 300);
+    }
+    if(counterO=== this.inputValue){
+      setTimeout(()=>alert('First player won!'), 300);
+    }
   }
-
-
+}
+  getWinnerDiagonalSide(matrix, inputValue){
+    let counterX=0;
+    let counterO=0;
+    for (let i =0; i<this.inputValue; i++){
+      for(let j=0; j<this.inputValue;j++){
+        if(i+j===this.inputValue-1){
+          if(this.matrix[i][j].value === 'x'){
+            counterX++;
+          }
+          if(this.matrix[i][j].value === 'o'){
+            counterO++;
+            console.log(counterO);
+          }
+        }
+      }
+      if(counterX === this.inputValue){
+        setTimeout(()=>alert('Second player won!'), 300);
+      }
+      if(counterO=== this.inputValue){
+        setTimeout(()=>alert('First player won!'), 300);
+      }
+    }
+  }
   getField(event){
     // this.inputValue = input.value;
    // console.log("event", event);
@@ -121,16 +151,11 @@ i: any;
     this.generateField(this.inputValue);
   }
 
-
-
-
-
-
    getRange(size) {
      this.inputValue = size;
      //this.month = this.item.multiplier;
      //console.log(this.month);
-     console.log(this.inputValue);
+     //console.log(this.inputValue);
      this.matrix = [];
      this.generateField(this.inputValue);
    }
@@ -155,7 +180,6 @@ i: any;
   createItem() {
     return {value: '', i: ''};
   }
-
 
 
 
