@@ -14,39 +14,27 @@ i: any;
   j: any;
  public arr: any = [];
   constructor() {
-    //console.log('inputValue ', this.inputValue);
-  }
+     }
 
   changeSign(cell, inputValue) {
-
-    //console.log('cell', cell);
-   // console.log('inputValue', inputValue);
-//debugger;
     if (cell.value === '' && this.counter % 2 === 0) {
       this.counter++;
-      //this.cell.clicked = true;
-      cell.value = 'o';
-     // this.arr.push(cell.value);
-    //  console.log(cell);
-    //  console.log(this.counter);
+          cell.value = 'o';
  this.getWinnerLines(cell, inputValue);
  this.getWinnerColumns(cell, inputValue);
  this.getWinnerDiagonalX(cell, inputValue);
  this.getWinnerDiagonalSide(cell, inputValue)
     } else if (cell.value === '' && this.counter % 2 !== 0) {
-      //this.counter++;
-      //this.cell.clicked = true;
-      cell.value = 'x';
-      //this.arr.push(cell.value);
+       cell.value = 'x';
+
       this.counter++;
-     // console.log(cell);
-    //  console.log(this.counter);
+
  this.getWinnerLines(cell, inputValue);
  this.getWinnerColumns(cell, inputValue);
  this.getWinnerDiagonalX(cell, inputValue);
  this.getWinnerDiagonalSide(cell, inputValue)
     }
-   // console.log('arr',this.arr);
+
   }
 
  getWinnerLines(matrix, inputValue) {
@@ -60,11 +48,11 @@ i: any;
          counter0++;
        }
        if (counter0 === this.inputValue) {
-         //setTimeout(()=>alert('First player won!'), 300);
+       setTimeout(()=>alert('Player 1 won!'), 300);
          this.winner0 = true;
          this.counter = 0;
        } else if (counterX === this.inputValue) {
-         //setTimeout(()=>alert('Second player won!'), 300);
+       setTimeout(()=>alert('Player 2 won!'), 300);
          this.winnerX = true;
          this.counter = 0;
        }
@@ -83,10 +71,10 @@ i: any;
            counter0++;
          }
          if(counter0 === this.inputValue){
-           setTimeout(()=>alert('First player won!'),300);
+           setTimeout(()=>alert('Player 1 won!'),300);
            this.counter = 0;
          }else if(counterX === this.inputValue){
-           setTimeout(()=>alert('Second player won!'),300);
+           setTimeout(()=>alert('Player 2 won!'),300);
            this.counter = 0;
          }
        }
@@ -110,10 +98,10 @@ getWinnerDiagonalX(matrix, inputValue){
       }
     }
     if(counterX === this.inputValue){
-      setTimeout(()=>alert('Second player won!'), 300);
+      setTimeout(()=>alert('Player 2 won!'), 300);
     }
     if(counterO=== this.inputValue){
-      setTimeout(()=>alert('First player won!'), 300);
+      setTimeout(()=>alert('Player 1 won!'), 300);
     }
   }
 }
@@ -128,23 +116,21 @@ getWinnerDiagonalX(matrix, inputValue){
           }
           if(this.matrix[i][j].value === 'o'){
             counterO++;
-            console.log(counterO);
-          }
+            }
         }
       }
       if(counterX === this.inputValue){
-        setTimeout(()=>alert('Second player won!'), 300);
+        setTimeout(()=>alert('Player 2 won!'), 300);
       }
       if(counterO=== this.inputValue){
-        setTimeout(()=>alert('First player won!'), 300);
+        setTimeout(()=>alert('Player 1 won!'), 300);
       }
     }
   }
   getField(event){
-    // this.inputValue = input.value;
-   // console.log("event", event);
+
     this.inputValue = event.target.value;
-   // console.log(this.inputValue);
+
     this.matrix = [];
 
 
@@ -153,9 +139,6 @@ getWinnerDiagonalX(matrix, inputValue){
 
    getRange(size) {
      this.inputValue = size;
-     //this.month = this.item.multiplier;
-     //console.log(this.month);
-     //console.log(this.inputValue);
      this.matrix = [];
      this.generateField(this.inputValue);
    }
@@ -172,7 +155,7 @@ getWinnerDiagonalX(matrix, inputValue){
 
       }
     }
-  //  console.log("МАТРИЦА", this.matrix);
+
     return this.matrix;
   }
 
